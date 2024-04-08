@@ -5,6 +5,7 @@ import { useOAuth } from '@clerk/clerk-expo';
 import React from 'react'
 import Colors from '../../utils/Colors';
 import { useWarmUpBrowser } from '../../hooks/useWarmUpBrowser';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const image = require('../../../assets/images/login.png');
 
@@ -35,31 +36,29 @@ const LoginScreen = () => {
   }, []);
  
   return (
-    <View style={{ alignItems: 'center', flex: 1}}>
-      <Image    
-        style={styles.mainImage}
-        source={image}
-      />
-
-      <View style={styles.container}>
-
-        <Text style={styles.mainText}>
-          Let's find
-          <Text style={{fontWeight: 'bold'}}> professional cleaning and repair </Text>
-          services
-        </Text>
-
-        <Text style={styles.subText}>
-          Best App to find services near you which deliver you a professional service
-        </Text>
-
-        <TouchableOpacity style={[styles.button, styles.shadow]} onPress={onPress}>
-          <Text style={styles.buttonText}>
-            Let's get started 
+    <SafeAreaView>
+      <View style={{ alignItems: 'center', flex: 1}}>
+        <Image
+          style={styles.mainImage}
+          source={image}
+        />
+        <View style={styles.container}>
+          <Text style={styles.mainText}>
+            Let's find
+            <Text style={{fontWeight: 'bold'}}> professional cleaning and repair </Text>
+            services
           </Text>
-        </TouchableOpacity>
+          <Text style={styles.subText}>
+            Best App to find services near you which deliver you a professional service
+          </Text>
+          <TouchableOpacity style={[styles.button, styles.shadow]} onPress={onPress}>
+            <Text style={styles.buttonText}>
+              Let's get started
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 

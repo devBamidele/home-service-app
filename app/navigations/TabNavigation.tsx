@@ -8,6 +8,7 @@ import HomeScreen from '../screens/home_screen/HomeScreen';
 import BookingScreen from '../screens/booking_screen/BookingScreen';
 import ProfileScreen from '../screens/profile_screen/ProfileScreen';
 import Colors from '../utils/Colors';
+import AppText from '../components/appText';
 
 
 const Tab = createBottomTabNavigator();
@@ -25,9 +26,9 @@ function Tabs() {
             },
             tabBarLabel: ({ color }) => {
               return (
-                <Text style={{ marginTop: -6, marginBottom: 2, color: color }}>
+                <AppText style={{ marginTop: -6, marginBottom: 2, color: color }}>
                   {route.name}
-                </Text>
+                </AppText>
               );
             },
             tabBarActiveTintColor: Colors.primary,

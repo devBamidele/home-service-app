@@ -4,6 +4,7 @@ const Colors = {
     primary: '#8E3FFF',
     white: '#FFFFFF',
     hintTextColor: '#9E9E9E',
+    iconBackground: '#E9E9E9',
 }
 
 export default Colors;
