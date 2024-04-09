@@ -2,7 +2,7 @@ import { request, gql } from 'graphql-request'
 import { MASTER_URL } from './config';
 
 const getSlider = async () => {
-    const query = gql`
+  const query = gql`
     query GetSlider {
         sliders {
           id
@@ -14,9 +14,9 @@ const getSlider = async () => {
       }
       
 `
-    const result = await request(`${MASTER_URL}`, query);
+  const result = await request(`${MASTER_URL}`, query);
 
-    return result;
+  return result;
 }
 
 
@@ -33,10 +33,30 @@ const getCategory = async () => {
   }
   
   `
-  const result = await request(`${MASTER_URL}`, query);
-
-  return result;
+  return await request(`${MASTER_URL}`, query);
 }
 
+const getBusinessList = async () => {
+  const query = gql`
+  query getBusinessList {
+    businessLists {
+      id
+      name
+      email
+      contactPerson
+      category {
+        name
+      }
+      address
+      about
+      images {
+        url
+      }
+    }
+  }
+  
+  `
+  return await request(`${MASTER_URL}`, query);
+}
 
-export  {getSlider, getCategory};
+export { getSlider, getCategory, getBusinessList };

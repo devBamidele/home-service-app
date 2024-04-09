@@ -12,7 +12,7 @@
     "@clerk/clerk-expo": "^0.20.14",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.17",
-    "expo": "~50.0.14",
+    "expo": "^50.0.15",
     "expo-font": "~11.10.3",
     "expo-secure-store": "^12.8.1",
     "expo-status-bar": "~1.11.1",

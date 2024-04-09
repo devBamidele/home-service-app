@@ -5,6 +5,18 @@ const Colors = {
     white: '#FFFFFF',
     hintTextColor: '#9E9E9E',
     iconBackground: '#E9E9E9',
+
+    lightTextColor: '#9F9F9F',
 }
 
 export default Colors;
+
+const addOpacity = (color: string, opacity: number): string => {
+    const normalizedOpacity = Math.max(0, Math.min(opacity, 1));
+   
+    const [r, g, b] = color.match(/\w\w/g)?.map((hex) => parseInt(hex, 16)) || [0, 0, 0];
+    
+    return `rgba(${r}, ${g}, ${b}, ${normalizedOpacity})`;
+};
+
+export {addOpacity};

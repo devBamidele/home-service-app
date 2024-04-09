@@ -1,19 +1,17 @@
-import { StyleSheet, Text, View, ActivityIndicator, FlatList } from 'react-native'
-import React, { FC, useEffect, useState } from 'react'
+import { StyleSheet, View, ActivityIndicator, FlatList } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import AppText from '../../components/appText'
 import Colors from '../../utils/Colors'
 import { getCategory } from '../../utils/GlobalApi'
-import CircleAvatar from '../../components/circleAvatar'
-import CategoryIcon from '../../components/categoryIcon'
+import CategoryIcon from './categoryIcon'
+import renderCategoryIcon from './categoryIcon'
 
 const Category = () => {
 
 
     const [category, setcategory] = useState<Category[] | undefined>(undefined);
 
-    useEffect(() => {
-        getCategories();
-    }, []);
+    useEffect(() => getCategories(), []);
 
     const getCategories = () => {
         getCategory()
@@ -49,11 +47,7 @@ const Category = () => {
                 numColumns={4}
                 data={category}
                 showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => (
-                    (
-                        <CategoryIcon item={item} />
-                    )
-                )}
+                renderItem={renderCategoryIcon}
 
             />) : (<ActivityIndicator size="large" color="#0000ff" />)}
 

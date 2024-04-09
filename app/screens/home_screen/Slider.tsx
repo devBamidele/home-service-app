@@ -60,10 +60,9 @@ const styles = StyleSheet.create({
     },
 
     sliderImage: {
-        width: 270,
-        height: 150,
+        width: 300,
+        height: 169,
         borderRadius: 16,
-        objectFit: 'contain',
     }
 });
 

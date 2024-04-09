@@ -3,7 +3,7 @@ import { View, Image, StyleSheet, ImageSourcePropType, DimensionValue } from 're
 import Colors from '../utils/Colors';
 
 interface AvatarProps {
-    source :  ImageSourcePropType,
+    source : ImageSourcePropType,
     size : DimensionValue,
 }
 

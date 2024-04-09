@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import Header from './Header'
 import Slider from './Slider'
 import Category from './Category'
+import BusinessList from './BusinessList'
 
 const HomeScreen = () => {
     return (
@@ -14,6 +15,9 @@ const HomeScreen = () => {
                 <View style={styles.viewStyle}><Slider/></View>
 
                 <View style={styles.viewStyle}><Category/></View>
+
+                <View style={styles.viewStyle}><BusinessList/></View>
+
             </View>
         </SafeAreaView>
     )
