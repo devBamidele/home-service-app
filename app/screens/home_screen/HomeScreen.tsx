@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Header from './Header'
@@ -13,11 +13,11 @@ const HomeScreen = () => {
                 <Header />
 
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    
-                    <Pressable>
-                        <View style={styles.viewStyle}><Slider /></View>
-                        <View style={styles.viewStyle}><Category /></View>
-                        <View style={styles.viewStyle}><BusinessList /></View>
+
+                    <Pressable style={styles.viewStyle}>
+                        <View><Slider /></View>
+                        <View><Category /></View>
+                        <View><BusinessList /></View>
                     </Pressable>
                 </ScrollView>
             </View>
@@ -28,5 +28,9 @@ const HomeScreen = () => {
 export default HomeScreen
 
 const styles = StyleSheet.create({
-    viewStyle: { paddingHorizontal: 18, paddingTop: 16 }
+    viewStyle: {
+        paddingHorizontal: 18,
+        paddingTop: 16,
+        gap: 14
+    }
 })

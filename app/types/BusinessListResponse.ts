@@ -1,4 +1,4 @@
-interface BusinessList {
+interface Business {
     id: string;
     name: string;
     email: string;
@@ -16,5 +16,5 @@ interface BusinessList {
 }
 
 interface BusinessListResponse {
-    businessLists: BusinessList[];
+    businessLists: Business[];
 }

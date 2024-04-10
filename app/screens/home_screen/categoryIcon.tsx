@@ -12,7 +12,9 @@ const CategoryIcon: FC<CategoryProps> = ({ item }) => {
 
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate("Business-list")}
+            onPress={() => navigation.navigate("Business-list", {
+                category: item.name
+            })}
             activeOpacity={0.6}
             style={styles.container}>
 

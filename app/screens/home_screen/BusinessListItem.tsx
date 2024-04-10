@@ -1,13 +1,14 @@
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React, { FC } from 'react'
 import AppText from '../../components/appText';
-import Colors, { addOpacity } from '../../utils/Colors';
+import Colors from '../../utils/Colors';
 
-interface ListItemProps {
-    item: BusinessList;
+
+export interface BusinessItemProps {
+    item: Business;
 }
 
-const BusinessListItem: FC<ListItemProps> = ({ item }) => {
+const BusinessListItem: FC<BusinessItemProps> = ({ item }) => {
     return (
         <TouchableOpacity activeOpacity={0.6} style={styles.businessContainer}>
             <View >
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
 });
 
 
-const renderBusinessItem = ({ item }: { item: BusinessList }) => (
+const renderBusinessItem = ({ item }: { item: Business }) => (
     <BusinessListItem item={item} />
 );
 

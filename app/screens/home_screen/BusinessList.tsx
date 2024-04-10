@@ -7,7 +7,7 @@ import renderBusinessItem from './BusinessListItem';
 
 const BusinessList = () => {
     
-    const [businessList, setBusinessList] = useState<BusinessList[] | undefined>();
+    const [businessList, setBusinessList] = useState<Business[] | undefined>();
 
     useEffect(() => {
         getBusinessLists();
@@ -17,6 +17,7 @@ const BusinessList = () => {
         getBusinessList()
             .then((response) => {
                 const businessListResponse = response as BusinessListResponse;
+                
                 setBusinessList(businessListResponse.businessLists);
             })
             .catch((err) => {
