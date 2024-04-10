@@ -9,21 +9,22 @@ interface ListItemProps {
 
 const BusinessListItem: FC<ListItemProps> = ({ item }) => {
     return (
-        <TouchableOpacity style={styles.businessContainer}>
+        <TouchableOpacity activeOpacity={0.6} style={styles.businessContainer}>
             <View >
                 <Image source={{ uri: item?.images[0].url }} style={styles.businessImage} />
 
                 <View style={styles.detailsContainer}>
 
-                    <AppText fontWeight='regular' style={styles.businessName}>{item.name}</AppText>
+                    <AppText fontWeight='medium' style={styles.businessName}>{item.name}</AppText>
                     <AppText style={styles.contactPerson}>{item.contactPerson}</AppText>
 
                     <View style={styles.categoryContainer}>
-                        <AppText style={{fontSize: 13, padding: 3}} >{item.category.name}</AppText>
+                        <AppText fontWeight='medium' style={{fontSize: 11, padding: 3, color: Colors.primary}} >{item.category.name}</AppText>
 
                     </View>
 
                 </View>
+                
             </View>
         </TouchableOpacity>
     );
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.white,
         padding: 10,
         paddingBottom: 16,
-        borderRadius: 12,
+        borderRadius: 14,
         marginRight: 12,
     },
     businessItem: {
@@ -43,28 +44,31 @@ const styles = StyleSheet.create({
     },
     detailsContainer: {
         marginLeft: 6,
-        marginTop: 12,
+        marginTop: 10,
     },
     businessName: {
-        fontSize: 18,
+        fontSize: 17,
     },
     businessImage: {
-        height: 120,
-        width: 213,
+        height: 100,
+        width: 160,
         borderRadius: 10,
     },
 
     contactPerson: {
         marginTop: 2,
-        color: Colors.lightTextColor
+        color: Colors.lightTextColor,
+        fontSize: 13,
     },
 
     categoryContainer: {
-        marginTop: 4,
-        backgroundColor: addOpacity(Colors.primary, 0.3),        
+        marginTop: 3,
+        backgroundColor: Colors.primary_light,        
         borderRadius: 4,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignSelf: 'flex-start',
+        paddingHorizontal: 4,
 
     }
 });

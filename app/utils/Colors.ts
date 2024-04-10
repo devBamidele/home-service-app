@@ -6,7 +6,8 @@ const Colors = {
     hintTextColor: '#9E9E9E',
     iconBackground: '#E9E9E9',
 
-    lightTextColor: '#9F9F9F',
+    lightTextColor: '#525252',
+    primary_light: '#F3D6FD',
 }
 
 export default Colors;

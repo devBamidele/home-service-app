@@ -3,11 +3,9 @@ import React, { useEffect, useState } from 'react'
 import AppText from '../../components/appText'
 import Colors from '../../utils/Colors'
 import { getCategory } from '../../utils/GlobalApi'
-import CategoryIcon from './categoryIcon'
 import renderCategoryIcon from './categoryIcon'
 
 const Category = () => {
-
 
     const [category, setcategory] = useState<Category[] | undefined>(undefined);
 
@@ -34,7 +32,6 @@ const Category = () => {
                     Categories
                 </AppText>
 
-
                 <AppText
                     style={styles.subHeading}>
                     View All
@@ -42,8 +39,8 @@ const Category = () => {
 
             </View>
 
-
             {category ? (<FlatList
+                scrollEnabled={false}
                 numColumns={4}
                 data={category}
                 showsHorizontalScrollIndicator={false}
@@ -52,7 +49,6 @@ const Category = () => {
             />) : (<ActivityIndicator size="large" color="#0000ff" />)}
 
         </View>
-
     )
 }
 
@@ -68,7 +64,6 @@ const styles = StyleSheet.create({
 
     heading: {
         fontSize: 20,
-
     },
 
     subHeading: {

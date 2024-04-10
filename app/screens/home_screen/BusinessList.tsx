@@ -6,6 +6,7 @@ import { getBusinessList } from '../../utils/GlobalApi';
 import renderBusinessItem from './BusinessListItem';
 
 const BusinessList = () => {
+    
     const [businessList, setBusinessList] = useState<BusinessList[] | undefined>();
 
     useEffect(() => {
@@ -24,7 +25,7 @@ const BusinessList = () => {
     };
 
     return (
-        <View>
+        <View style={{marginBottom: 10}}>
             <View style={styles.container}>
                 <AppText fontWeight='medium' style={styles.heading}>
                     Latest Business
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'space-between',
         flexDirection: 'row',
-        marginBottom: 16,
+        marginBottom: 12,
         alignItems: 'flex-end',
     },
     heading: {
