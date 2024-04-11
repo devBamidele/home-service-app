@@ -16,16 +16,23 @@ const BusinessListItem: FC<BusinessItemProps> = ({ item }) => {
 
                 <View style={styles.detailsContainer}>
 
-                    <AppText fontWeight='medium' style={styles.businessName}>{item.name}</AppText>
+                <AppText
+                        numberOfLines={1}
+                        ellipsizeMode="tail"
+                        fontWeight='medium'
+                        style={styles.businessName}>
+                        {item.name}
+                    </AppText>
+
                     <AppText style={styles.contactPerson}>{item.contactPerson}</AppText>
 
                     <View style={styles.categoryContainer}>
-                        <AppText fontWeight='medium' style={{fontSize: 11, padding: 3, color: Colors.primary}} >{item.category.name}</AppText>
+                        <AppText fontWeight='medium' style={{ fontSize: 11, padding: 3, color: Colors.primary }} >{item.category.name}</AppText>
 
                     </View>
 
                 </View>
-                
+
             </View>
         </TouchableOpacity>
     );
@@ -46,9 +53,11 @@ const styles = StyleSheet.create({
     detailsContainer: {
         marginLeft: 6,
         marginTop: 10,
+    
     },
     businessName: {
         fontSize: 17,
+        width: 150
     },
     businessImage: {
         height: 100,
@@ -64,13 +73,12 @@ const styles = StyleSheet.create({
 
     categoryContainer: {
         marginTop: 3,
-        backgroundColor: Colors.primary_light,        
+        backgroundColor: Colors.primary_light,
         borderRadius: 4,
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'flex-start',
         paddingHorizontal: 4,
-
     }
 });
 

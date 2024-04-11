@@ -1,76 +1,101 @@
-import { StyleSheet, View, ActivityIndicator, FlatList, } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { StyleSheet, View, ActivityIndicator, FlatList, RefreshControl, } from 'react-native'
+import React, { useEffect, useState, useCallback } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import Ionicons from '@expo/vector-icons/Ionicons';
+
+
 import Colors from '../../utils/Colors';
 import AppText from '../../components/appText';
+import renderBusinessCategory from './BusinessCategory';
 import { getBusinessListByCategory } from '../../utils/GlobalApi';
 
-import renderBusinessCategory from './businessCategory';
-
-interface ScreenProps {
-    category: string
+interface BusinessCategoryScreenProps {
+    category: string;
 }
 
-const BusinessListByCategoryScreen = () => {
+const BusinessesbusinessesByCategoryScreen = () => {
 
-    const [businesses, setBusinesses] = useState<Business[] | undefined>()
+    const [businesses, setBusinesses] = useState<Business[] | undefined>();
+    const [refreshing, setRefreshing] = useState(false);
 
-    const params = useRoute().params as ScreenProps;
-
+    const params = useRoute().params as BusinessCategoryScreenProps;
     const navigation = useNavigation();
 
-    const pop = () => navigation.goBack();
-
-    useEffect(() => { 
-        getBusinesses();
-    }, []);
-
     const getBusinesses = () => {
+        setRefreshing(true); 
+
         getBusinessListByCategory(params?.category)
             .then((response) => {
                 const businessResponse = response as BusinessListResponse;
-
+                
                 setBusinesses(businessResponse.businessLists);
             })
             .catch((err) => {
                 console.log('Error getting lists by category:', err);
             })
+            .finally(() => {
+                setRefreshing(false); 
+            });
     }
+
+    const onRefresh = useCallback(() => {
+        getBusinesses();
+    }, []);
+
+    useEffect(() => {
+        getBusinesses(); 
+    }, []);
 
     return (
         <SafeAreaView>
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <Ionicons name={"arrow-back"} size={27} color={Colors.black} onPress={pop} />
+                    <Ionicons
+                        name={"arrow-back"}
+                        size={27}
+                        color={Colors.black}
+                        onPress={() => navigation.goBack()} />
                     <AppText fontWeight='medium' style={{ fontSize: 25 }} >{params.category}</AppText>
                 </View>
 
-                {
-                    businesses ? (
-                        <FlatList
-                        data={businesses}
-                        keyExtractor={(item) => item.id}
-                        showsVerticalScrollIndicator={false}
-                        renderItem={renderBusinessCategory}
+                {businesses ? businesses.length > 0 ? (
+                 <FlatList
+                            data={businesses}
+                            keyExtractor={(item) => item.id}
+                            showsVerticalScrollIndicator={false}
+                            renderItem={renderBusinessCategory}
+                            refreshControl={
+                                <RefreshControl  refreshing={refreshing} onRefresh={onRefresh} />
+                            }
                         />
-                    ) : (
-                        <ActivityIndicator size="large" color="#0000ff" />
-                    )}
-                    
+            ) : (
+                <AppText style={styles.emptyText}>
+                    No items found
+                </AppText>
+            ) : (
+                <ActivityIndicator size="small" color="#0000ff" />
+            )}
+
             </View>
         </SafeAreaView>
     )
 }
 
-export default BusinessListByCategoryScreen
+export default BusinessesbusinessesByCategoryScreen
 
 const styles = StyleSheet.create({
 
+    emptyText: {
+        textAlign:"center",
+         marginTop: '70%', 
+         fontSize: 18,
+         color: Colors.black
+    },
+
     container: {
         paddingHorizontal: 18,
-        paddingTop: 14
+        paddingTop: 14,
     },
 
     header: {

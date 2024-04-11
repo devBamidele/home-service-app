@@ -40,13 +40,13 @@ const BusinessList = () => {
             {businessList ? (
                 <FlatList
                     horizontal={true}
-                    data={businessList}
+                    data={businessList.slice(0, 4)} 
                     keyExtractor={(item) => item.id}
                     renderItem={renderBusinessItem}
                     showsHorizontalScrollIndicator={false}
                 />
             ) : (
-                <ActivityIndicator size="large" color="#0000ff" />
+                <ActivityIndicator size="small" color="#0000ff" />
             )}
         </View>
     );
