@@ -1,5 +1,5 @@
-import { StyleSheet, View, Image, Pressable } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, View, Image, Pressable, TouchableOpacity, Text } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useRoute } from '@react-navigation/native'
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -9,6 +9,10 @@ import { ScrollView } from 'react-native-gesture-handler';
 import BusinessPhotos from './BusinessPhotos';
 import BusinessAboutMe from './BusinessAboutMe';
 import DetailsComponent from './DetailsComponent';
+import AppText from '../../components/appText';
+import { BottomTabBarHeightContext, useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import BusinessContact from './BusinessContact.';
+import BookingModal from './BookingModal';
 
 
 interface BusinessDetailsScreenProps {
@@ -23,46 +27,65 @@ const BusinessDetailsScreen = () => {
 
   const navigation = useNavigation();
 
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <SafeAreaView>
       {business && (
-        <ScrollView>
-          <Pressable>
-            <View>
-              <Pressable
-                onPress={() => navigation.goBack()}
-                style={styles.backButton}>
+        <View>
 
-                <Ionicons
-                  name={"arrow-back"}
-                  color={Colors.white}
-                  size={30}
-                />
+          <Pressable
+            onPress={() => navigation.goBack()}
+            style={styles.backButton}>
 
-              </Pressable>
+            <Ionicons
+              name={"arrow-back"}
+              color={Colors.white}
+              size={30}
+            />
 
-              <Image
-                source={{ uri: business.images[0].url }}
-                style={{ width: '100%', height: 300 }}
-              ></Image>
+          </Pressable>
 
-              <View style={{ marginHorizontal: 18, marginVertical: 20, gap: 7 }}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            style={{ marginBottom: 94 }}
+          >
+            <Pressable>
+              <View>
 
-                <DetailsComponent business={business}/>                
+                <Image
+                  source={{ uri: business.images[0].url }}
+                  style={{ width: '100%', height: 300 }}
+                ></Image>
 
-                <View style={styles.separator} />
+                <View style={{ marginHorizontal: 18, marginVertical: 20, gap: 7 }}>
 
-                <BusinessAboutMe business={business} />
+                  <DetailsComponent business={business} />
 
-                <View style={styles.separator} />
+                  <View style={styles.separator} />
 
-                <BusinessPhotos business={business} />
+                  <BusinessAboutMe business={business} />
+
+                  <View style={styles.separator} />
+
+                  <BusinessPhotos business={business} />
+
+                </View>
 
               </View>
+            </Pressable>
+          </ScrollView>
 
-            </View>
-          </Pressable>
-        </ScrollView>
+          <BusinessContact onBookNow={() => setShowModal(true)} />
+
+          <BookingModal
+            businessId={business.id}
+            showModal={showModal}
+            dismissModal={() => setShowModal(false)}
+          />
+
+        </View>
+
       )}
     </SafeAreaView>
   )
@@ -84,5 +107,5 @@ const styles = StyleSheet.create({
     top: 16,
     left: 16,
   },
- 
+
 })

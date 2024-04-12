@@ -8,6 +8,7 @@ const Colors = {
 
     lightTextColor: '#525252',
     primary_light: '#F3D6FD',
+    backgroundColor: '#F2F2F2',
 }
 
 export default Colors;

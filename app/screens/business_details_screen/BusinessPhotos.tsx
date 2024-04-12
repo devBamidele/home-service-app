@@ -14,16 +14,16 @@ const BusinessPhotos: FC<BusinessPhotosProps> = ({ business }) => {
                 Photos
             </AppText>
 
-            {
-                business.images.map(
-                    (data) => (
-                        <Image
-                            source={{ uri: data.url }}
-                            key={data.url}
-                            style={styles.image}
-                        />)
-                )
-            }
+            <FlatList
+                data={business.images}
+                numColumns={2}
+                renderItem={({ item }) => (
+                    <Image
+                        source={{ uri: item.url }}
+                        style={styles.image}
+                    />
+                )} />
+
         </View>
     )
 }
