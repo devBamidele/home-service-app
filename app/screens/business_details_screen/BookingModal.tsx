@@ -9,6 +9,8 @@ import { createBooking } from '../../utils/GlobalApi';
 import DismissKeyboardHoc from '../../components/dismisskeyboard.hoc';
 import { useUser } from '@clerk/clerk-expo';
 import format from '../../utils/dateFormatter';
+import { Booking, BookingStatus } from '../../types/Booking';
+
 
 type dismissModal = () => void;
 
@@ -33,18 +35,17 @@ const BookingModal: FC<BookingModalProps> = ({ showModal, dismissModal, business
     const createBookings = async () => {
 
         if (!selectedTime || !selectedDate) {
-            ToastAndroid.show('Please select data and time', ToastAndroid.LONG);
+            ToastAndroid.show('Please select date and time', ToastAndroid.LONG);
 
             return;
         }
-
 
         const data: Booking = {
             userName: user?.fullName ?? 'No name provided',
             userEmail: user?.primaryEmailAddress?.emailAddress ?? 'No email provided',
             date: format(selectedDate),
             time: selectedTime,
-            businessId: businessId,
+            id: businessId,
             bookingStatus: BookingStatus.Booked,
             note: note,
         }
@@ -57,6 +58,8 @@ const BookingModal: FC<BookingModalProps> = ({ showModal, dismissModal, business
             })
             .catch((err) => {
                 console.log('Error creating booking:', err);
+
+                ToastAndroid.show('Error creaing booking', ToastAndroid.SHORT);
             })
     }
 

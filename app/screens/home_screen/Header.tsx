@@ -7,12 +7,12 @@ import AppText from '../../components/appText';
 
 const Header = () => {
 
-    //const { user, isLoaded } = useUser();
+    const { user, isLoaded } = useUser();
 
-    const userData = {
-        imageUrl: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        fullName: 'Bamidele Ajewole'
-    }
+    // const userData = {
+    //     imageUrl: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    //     fullName: 'Bamidele Ajewole'
+    // }
 
     const [focused, setFocused] = useState<Boolean>(false);
 
@@ -21,11 +21,11 @@ const Header = () => {
             <View style={styles.profileFirstRow}>
                 <View style={styles.profileContainer}>
 
-                    <Image source={{ uri: userData.imageUrl }} style={styles.userImage} />
+                    <Image source={{ uri: user?.imageUrl }} style={styles.userImage} />
 
                     <View>
                         <AppText style={styles.welcomeText} >Welcome,</AppText>
-                        <AppText fontWeight="medium" style={styles.userName}>{userData.fullName}</AppText>
+                        <AppText fontWeight="medium" style={styles.userName}>{user?.fullName}</AppText>
                     </View>
                 </View>
 

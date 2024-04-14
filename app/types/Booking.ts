@@ -1,16 +1,16 @@
 
-enum BookingStatus {
+export enum BookingStatus {
     Booked = 'Booked',
     InProgress = 'InProgress',
     Completed = 'Completed',
   }
 
-interface Booking {
+export interface Booking {
     userName: string;
     userEmail: string;
     date: string;
     time: string;
-    businessId: string ;
+    id: string ;
     bookingStatus: BookingStatus; 
-    note: string;
+    note?: string;
   }

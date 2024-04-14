@@ -1,4 +1,4 @@
-interface Business {
+export interface Business {
     id: string;
     name: string;
     email: string;
@@ -15,6 +15,6 @@ interface Business {
     ]
 }
 
-interface BusinessListResponse {
+export interface BusinessListResponse {
     businessLists: Business[];
 }

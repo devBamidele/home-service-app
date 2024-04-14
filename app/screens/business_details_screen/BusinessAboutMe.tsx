@@ -2,6 +2,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import React, { FC, useState } from 'react'
 import AppText from '../../components/appText'
 import Colors from '../../utils/Colors';
+import { Business } from '../../types/BusinessListResponse';
 
 interface AboutMeProps {
     business: Business,

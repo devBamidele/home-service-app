@@ -3,6 +3,7 @@ import React, { FC } from 'react'
 import AppText from '../../components/appText'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Colors from '../../utils/Colors';
+import { Business } from '../../types/BusinessListResponse';
 
 interface BusinessPhotosProps {
     business: Business,

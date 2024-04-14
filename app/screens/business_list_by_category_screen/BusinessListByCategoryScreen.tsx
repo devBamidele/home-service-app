@@ -2,7 +2,6 @@ import { StyleSheet, View, ActivityIndicator, FlatList, RefreshControl, } from '
 import React, { useEffect, useState, useCallback } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import Ionicons from '@expo/vector-icons/Ionicons';
 
 
 import Colors from '../../utils/Colors';
@@ -10,7 +9,7 @@ import AppText from '../../components/appText';
 import renderBusinessCategory from './BusinessCategory';
 import { getBusinessListByCategory } from '../../utils/GlobalApi';
 import PageHeading from '../../components/pageHeading';
-import { Header } from '@react-navigation/stack';
+import { Business, BusinessListResponse } from '../../types/BusinessListResponse';
 
 interface BusinessCategoryScreenProps {
     category: string;
@@ -22,7 +21,6 @@ const BusinessesbusinessesByCategoryScreen = () => {
     const [refreshing, setRefreshing] = useState(false);
 
     const params = useRoute().params as BusinessCategoryScreenProps;
-    const navigation = useNavigation();
 
     const getBusinesses = () => {
         setRefreshing(true);
@@ -39,7 +37,7 @@ const BusinessesbusinessesByCategoryScreen = () => {
             .finally(() => {
                 setRefreshing(false);
             });
-    }
+    };
 
     const onRefresh = useCallback(() => {
         getBusinesses();

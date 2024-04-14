@@ -1,17 +1,39 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
 import React, { FC } from 'react'
-import { BusinessItemProps } from '../home_screen/BusinessListItem'
 import Colors from '../../utils/Colors'
 import AppText from '../../components/appText'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native'
+import { UserBooking } from '../../types/UserBooking';
+import { Business } from '../../types/BusinessListResponse';
 
-const BusinessCategory: FC<BusinessItemProps> = ({ item }) => {
+
+interface BusinessCategoryProps {
+    item: Business;
+    booking?: UserBooking;
+}
+
+export const BusinessCategory: FC<BusinessCategoryProps> = ({ item, booking }) => {
 
     const navigation = useNavigation();
 
     const goToDetailsScreen = () => {
-        navigation.navigate('Business-Details', {business : item});
+
+        // if (booking != null) {
+        //     navigation.navigate('Home', {
+        //         screen: 'Business-Details',
+        //         params: {
+        //             business: booking.businessList
+
+        //         }
+
+        //     });
+
+        //     return;
+        // }
+
+
+        navigation.navigate('Business-Details', { business: item });
     }
 
     return (
@@ -25,20 +47,38 @@ const BusinessCategory: FC<BusinessItemProps> = ({ item }) => {
                     <AppText style={styles.contactPerson}>
                         {item.contactPerson}
                     </AppText>
+
                     <AppText fontWeight='medium' style={styles.name}>
                         {item.name}
                     </AppText>
-                    <View style={styles.addressContainer}>
-                        <Ionicons
-                            style={{ marginLeft: -4 }}
-                            name={"location"}
-                            size={24}
-                            color={Colors.primary}
-                             />
-                        <AppText numberOfLines={1} ellipsizeMode="tail" style={styles.address}>
-                            {item.address}
-                        </AppText>
+
+                    <View>
+                        {booking != null ? (
+                            <View style={styles.timeContainer}>
+                                <Ionicons
+                                    name={"calendar-outline"}
+                                    size={24}
+                                    color={Colors.primary}
+                                />
+                                <AppText style={styles.address} >{booking.date} at {booking.time}</AppText>
+                            </View>
+                        ) : (
+                            <View style={styles.addressContainer}>
+                                <Ionicons
+                                    style={{ marginLeft: -4 }}
+                                    name={"location"}
+                                    size={24}
+                                    color={Colors.primary}
+                                />
+                                <AppText numberOfLines={1} ellipsizeMode="tail" style={styles.address}>
+                                    {item.address}
+                                </AppText>
+                            </View>
+                        )}
                     </View>
+
+
+
                 </View>
             </View>
         </Pressable>
@@ -84,7 +124,14 @@ const styles = StyleSheet.create({
         gap: 6,
     },
 
+    timeContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 6,
+    },
+
     address: {
+        marginTop: 4,
         fontSize: 16,
         color: Colors.lightTextColor
     }

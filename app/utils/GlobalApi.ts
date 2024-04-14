@@ -1,5 +1,6 @@
 import { request, gql } from 'graphql-request'
 import { MASTER_URL } from './config';
+import { Booking } from '../types/Booking';
 
 const getSlider = async () => {
   const query = gql`
@@ -89,7 +90,7 @@ const createBooking = async (booking: Booking) => {
     createBooking(
       data: {
         bookingStatus: Booked,
-        businessLists: { connect: { id: "`+ booking.businessId + `" } },
+        businessList: { connect: { id: "`+ booking.id + `" } },
         date: "`+ booking.date + `",
         time: "`+ booking.time + `",
         userEmail: "`+ booking.userEmail + `",
@@ -108,10 +109,39 @@ const createBooking = async (booking: Booking) => {
   return await request(`${MASTER_URL}`, mutationQuery);
 }
 
+const getUserBookings = async (userEmail: string) => {
+  const query = gql`
+  query getUserBookings {
+    bookings(orderBy: updatedAt_DESC, where: {userEmail: "`+userEmail+`"}) {
+      id
+      userName
+      userEmail
+      bookingStatus
+      date
+      time
+      businessList {
+        id
+        images {
+          url
+        }
+        name
+        address
+        contactPerson
+        email
+        about
+      }
+    }
+  }
+  `
+
+  return await request(`${MASTER_URL}`, query);
+}
+
 export {
   getSlider,
   getCategory,
   createBooking,
+  getUserBookings,
   getBusinessList,
   getBusinessListByCategory,
 };

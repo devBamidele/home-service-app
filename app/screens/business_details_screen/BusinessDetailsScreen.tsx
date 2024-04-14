@@ -1,5 +1,5 @@
-import { StyleSheet, View, Image, Pressable, TouchableOpacity, Text } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { StyleSheet, View, Image, Pressable } from 'react-native'
+import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useRoute } from '@react-navigation/native'
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -9,10 +9,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 import BusinessPhotos from './BusinessPhotos';
 import BusinessAboutMe from './BusinessAboutMe';
 import DetailsComponent from './DetailsComponent';
-import AppText from '../../components/appText';
-import { BottomTabBarHeightContext, useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import BusinessContact from './BusinessContact.';
 import BookingModal from './BookingModal';
+import { Business } from '../../types/BusinessListResponse';
 
 
 interface BusinessDetailsScreenProps {

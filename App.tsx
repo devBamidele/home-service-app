@@ -48,14 +48,12 @@ export default function App() {
         <DismissKeyboardHoc>
           
           <View style={styles.container}>
-            <Tabs />
-
-            {/* <SignedIn>
+            <SignedIn>
               <Tabs />
             </SignedIn>
             <SignedOut>
               <LoginScreen />
-            </SignedOut> */}
+            </SignedOut>
             <StatusBar style="auto" />
           </View>
         </DismissKeyboardHoc>

@@ -2,9 +2,11 @@ import { View, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React, { FC } from 'react'
 import AppText from '../../components/appText';
 import Colors from '../../utils/Colors';
+import { Booking } from '../../types/Booking';
+import { Business } from '../../types/BusinessListResponse';
 
 
-export interface BusinessItemProps {
+interface BusinessItemProps {
     item: Business;
 }
 
