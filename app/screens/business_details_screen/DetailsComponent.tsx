@@ -11,7 +11,7 @@ interface BusinessPhotosProps {
 
 const DetailsComponent: FC<BusinessPhotosProps> = ({ business }) => {
     return (
-        <View style={{gap: 7}}>
+        <View style={{ gap: 7 }}>
             <AppText fontWeight="bold" style={{ fontSize: 25, letterSpacing: 0.3 }}>
                 {business.name}
             </AppText>

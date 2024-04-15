@@ -129,6 +129,9 @@ const getUserBookings = async (userEmail: string) => {
         contactPerson
         email
         about
+        category {
+          name
+        }
       }
     }
   }

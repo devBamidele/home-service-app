@@ -12,11 +12,11 @@ interface BusinessContactProps {
     onBookNow?: OnBookNowFunction;
 }
 
-const BusinessContact: FC<BusinessContactProps> = ({ onBookNow }) => {
+const BusinessContact: FC<BusinessContactProps> = ({ onBookNow, onMessage }) => {
     return (
         <View style={styles.mainContainer}>
 
-            <TouchableOpacity activeOpacity={0.6} style={styles.messageButton}>
+            <TouchableOpacity onPress={onMessage} activeOpacity={0.6} style={styles.messageButton}>
                 <AppText fontWeight='medium' style={styles.messageButtonText}>
                     Message
                 </AppText>

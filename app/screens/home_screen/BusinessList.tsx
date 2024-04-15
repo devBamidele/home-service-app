@@ -4,6 +4,7 @@ import AppText from '../../components/appText';
 import Colors from '../../utils/Colors';
 import { getBusinessList } from '../../utils/GlobalApi';
 import renderBusinessItem from './BusinessListItem';
+import { Business, BusinessListResponse } from '../../types/BusinessListResponse';
 
 const BusinessList = () => {
     

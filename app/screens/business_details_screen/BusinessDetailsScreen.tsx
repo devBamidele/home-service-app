@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, Pressable } from 'react-native'
+import { StyleSheet, View, Image, Pressable, Linking } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useRoute } from '@react-navigation/native'
@@ -27,6 +27,10 @@ const BusinessDetailsScreen = () => {
   const navigation = useNavigation();
 
   const [showModal, setShowModal] = useState(false);
+
+  const sendMessage = () =>
+    Linking.openURL('mailto:' + business.email + '?subject=Service Request&body=Hi There,')
+  
 
   return (
     <SafeAreaView>
@@ -75,7 +79,10 @@ const BusinessDetailsScreen = () => {
             </Pressable>
           </ScrollView>
 
-          <BusinessContact onBookNow={() => setShowModal(true)} />
+          <BusinessContact
+            onBookNow={() => setShowModal(true)}
+            onMessage={() => sendMessage()}
+          />
 
           <BookingModal
             businessId={business.id}

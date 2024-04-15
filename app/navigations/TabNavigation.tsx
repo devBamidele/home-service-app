@@ -3,11 +3,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 
-import BookingScreen from '../screens/booking_screen/BookingScreen';
 import ProfileScreen from '../screens/profile_screen/ProfileScreen';
 import Colors from '../utils/Colors';
 import AppText from '../components/appText';
 import TabNavigation from './HomeNavigation';
+import BookingNavigation from './BookingNavigation';
 
 
 const Tab = createBottomTabNavigator();
@@ -37,7 +37,7 @@ function Tabs() {
           
       >
         <Tab.Screen name="Home" component={TabNavigation} />
-        <Tab.Screen name="Booking" component={BookingScreen} />
+        <Tab.Screen name="Booking" component={BookingNavigation} />
         <Tab.Screen name="Profile" component={ProfileScreen} />
       </Tab.Navigator>
     </NavigationContainer>

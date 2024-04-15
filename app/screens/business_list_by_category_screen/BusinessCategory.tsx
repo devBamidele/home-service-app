@@ -16,24 +16,9 @@ interface BusinessCategoryProps {
 export const BusinessCategory: FC<BusinessCategoryProps> = ({ item, booking }) => {
 
     const navigation = useNavigation();
-
+    
     const goToDetailsScreen = () => {
-
-        // if (booking != null) {
-        //     navigation.navigate('Home', {
-        //         screen: 'Business-Details',
-        //         params: {
-        //             business: booking.businessList
-
-        //         }
-
-        //     });
-
-        //     return;
-        // }
-
-
-        navigation.navigate('Business-Details', { business: item });
+        navigation.navigate('Business-Details', { business: item});
     }
 
     return (

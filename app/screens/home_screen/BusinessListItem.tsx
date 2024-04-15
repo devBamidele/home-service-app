@@ -2,8 +2,8 @@ import { View, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React, { FC } from 'react'
 import AppText from '../../components/appText';
 import Colors from '../../utils/Colors';
-import { Booking } from '../../types/Booking';
 import { Business } from '../../types/BusinessListResponse';
+import { useNavigation } from '@react-navigation/native';
 
 
 interface BusinessItemProps {
@@ -11,14 +11,25 @@ interface BusinessItemProps {
 }
 
 const BusinessListItem: FC<BusinessItemProps> = ({ item }) => {
+
+    const navigation = useNavigation();
+
+    const goToDetailsScreen = () => {
+        navigation.navigate('Business-Details', { business: item });
+    }
+
     return (
-        <TouchableOpacity activeOpacity={0.6} style={styles.businessContainer}>
+        <TouchableOpacity
+            activeOpacity={0.6}
+            style={styles.businessContainer}
+            onPress={goToDetailsScreen}
+        >
             <View >
                 <Image source={{ uri: item?.images[0].url }} style={styles.businessImage} />
 
                 <View style={styles.detailsContainer}>
 
-                <AppText
+                    <AppText
                         numberOfLines={1}
                         ellipsizeMode="tail"
                         fontWeight='medium'
@@ -55,7 +66,7 @@ const styles = StyleSheet.create({
     detailsContainer: {
         marginLeft: 6,
         marginTop: 10,
-    
+
     },
     businessName: {
         fontSize: 17,
